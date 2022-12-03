@@ -10,26 +10,11 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
     private boolean mouseClicked;
     private boolean mousePressed;
 
-    private boolean[] currentlyPressed;
     private boolean[] pressed;
 
     public Input() {
         pressed = new boolean[1000];
-        currentlyPressed = new boolean[1000];
         mousePosition = new Position(0, 0);
-    }
-
-    public boolean isPressed(int keyCode) {
-        if(!pressed[keyCode] && currentlyPressed[keyCode]) {
-            pressed[keyCode] = true;
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean isCurrentlyPressed(int keyCode) {
-        return currentlyPressed[keyCode];
     }
 
     public void clearMouseClick() {
@@ -48,17 +33,19 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
         return mousePressed;
     }
 
+    public boolean isPressed(int keyCode) {
+        return pressed[keyCode];
+    }sad
+
     @Override
     public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
-        currentlyPressed[e.getKeyCode()] = true;
+        pressed[e.getKeyCode()] = true;
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
-        currentlyPressed[e.getKeyCode()] = false;
         pressed[e.getKeyCode()] = false;
     }
 
