@@ -35,7 +35,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
     public boolean isPressed(int keyCode) {
         return pressed[keyCode];
-    }sad
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}
