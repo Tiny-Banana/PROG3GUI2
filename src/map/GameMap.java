@@ -13,7 +13,7 @@ public class GameMap {
     private int[][] tileMap;
 
     public GameMap(SpriteLibrary spriteLibrary) {
-        tileImage = new Tile[3];
+        tileImage = new Tile[4];
         tileMap = new int[GamePanel.MAX_SCREEN_ROW][GamePanel.MAX_SCREEN_COL];
         readTiles();
         initializeTileImages(spriteLibrary);
@@ -55,6 +55,7 @@ public class GameMap {
         tileImage[0].setSprite(spriteLibrary, "grass");
         tileImage[1].setSprite(spriteLibrary, "dirt");
         tileImage[2].setSprite(spriteLibrary, "water");
+        tileImage[3].setSprite(spriteLibrary, "plant");
     }
 
     public Tile[] getTileImage() {
