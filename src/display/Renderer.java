@@ -13,16 +13,29 @@ public class Renderer {
     }
 
     private void renderObject(State state, Graphics2D graphics) {
-        state.getGameObjects().forEach(gameObject -> graphics.drawImage(
-                gameObject.getSprite(),
-                gameObject.getPosition().intX(),
-                gameObject.getPosition().intY(),
-                GamePanel.TILE_SIZE * GamePanel.SCALE,
-                GamePanel.TILE_SIZE * GamePanel.SCALE,
-                null
-        ));
-    }
+        for (int i = 0; i < state.getGameObjects().size(); i++) {
+            if (i < state.getGameObjects() .size() - 1) {
+                graphics.drawImage(
+                        state.getGameObjects().get(i).getSprite(),
+                        state.getGameObjects().get(i).getPosition().intX(),
+                        state.getGameObjects().get(i).getPosition().intY(),
+                        GamePanel.TILE_SIZE,
+                        GamePanel.TILE_SIZE,
+                        null
+                );
+            } else {
+                graphics.drawImage(
+                        state.getGameObjects().get(i).getSprite(),
+                        state.getGameObjects().get(i).getPosition().intX(),
+                        state.getGameObjects().get(i).getPosition().intY(),
+                        GamePanel.TILE_SIZE * GamePanel.SCALE,
+                        GamePanel.TILE_SIZE * GamePanel.SCALE,
+                        null
+                );
+            }
+        }
 
+    }
     private void renderMap(State state, Graphics graphics) {
         int col = 0;
         int row = 0;
