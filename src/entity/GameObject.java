@@ -8,10 +8,11 @@ import java.awt.*;
 public abstract class GameObject {
     protected Position position;
     protected Size size;
+    protected String objectName;
 
     public GameObject() {
-        position = new Position(50, 50);
-        size = new Size(50, 50);
+        this.position = new Position(50, 50);
+        this.size = new Size(50, 50);
     }
 
     public abstract void update();
@@ -20,16 +21,10 @@ public abstract class GameObject {
     public Position getPosition() {
         return position;
     }
-
-    public Size getSize() {
-        return size;
-    }
-
     public void setPosition(Position position) {
         this.position = position;
     }
-
-    public void setSize(Size size) {
-        this.size = size;
+    public String getObjectName() {
+        return objectName;
     }
 }

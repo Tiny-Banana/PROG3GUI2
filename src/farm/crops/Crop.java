@@ -9,7 +9,7 @@ import entity.GameObject;
  * @version 1.0
  * @since 11/07/2022
  */
-public abstract class Crop extends GameObject {
+public abstract class Crop {
     protected String name;
     protected String cropType;
     protected int harvestTime;
@@ -25,11 +25,6 @@ public abstract class Crop extends GameObject {
     protected int daysPlanted;
     protected int maxProduce;
     protected int basePrice;
-
-    @Override
-    public void update() {
-
-    }
 
     //Getters and Setters
     public String getName() {

@@ -14,7 +14,7 @@ public class Renderer {
 
     private void renderObject(State state, Graphics2D graphics) {
         for (int i = 0; i < state.getGameObjects().size(); i++) {
-            if (i < state.getGameObjects() .size() - 1) {
+            if (state.getGameObjects().get(i).getObjectName().equals("tile")) {
                 graphics.drawImage(
                         state.getGameObjects().get(i).getSprite(),
                         state.getGameObjects().get(i).getPosition().intX(),
@@ -28,13 +28,12 @@ public class Renderer {
                         state.getGameObjects().get(i).getSprite(),
                         state.getGameObjects().get(i).getPosition().intX(),
                         state.getGameObjects().get(i).getPosition().intY(),
-                        GamePanel.TILE_SIZE * GamePanel.SCALE,
-                        GamePanel.TILE_SIZE * GamePanel.SCALE,
+                        GamePanel.TILE_SIZE * 3,
+                        GamePanel.TILE_SIZE * 3,
                         null
                 );
             }
         }
-
     }
     private void renderMap(State state, Graphics graphics) {
         int col = 0;

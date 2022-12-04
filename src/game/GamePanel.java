@@ -2,9 +2,11 @@ package game;
 
 import display.Display;
 import display.Renderer;
+import entity.FarmTile;
+import farm.FarmBoard;
 import game.state.GameState;
 import game.state.State;
-import input.Input;
+import input.KeyHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,24 +21,28 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
     private final Renderer renderer;
 
-    private Input input;
+    private KeyHandler keyHandler;
     private State state;
 
     private boolean running;
     private final double updateRate = 60;
 
     public GamePanel() {
-        input = new Input();
+        keyHandler = new KeyHandler();
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setBackground(Color.black);
         setDoubleBuffered(true);
         setFocusable(true);
-        addKeyListener(input);
+        addKeyListener(keyHandler);
         setLayout(null);
 
         renderer = new Renderer();
+        state = new GameState(keyHandler, this);
 
-        state = new GameState(input);
+//        new FarmBoard(state, this);
+
+        state.getGameObjects().add(state.getPlayer());
+
         new Display(this);
     }
 

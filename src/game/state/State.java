@@ -1,9 +1,12 @@
 package game.state;
 
+import controller.PlayerController;
 import entity.GameObject;
+import entity.Player;
 import farm.FarmBoard;
+import game.GamePanel;
 import gfx.SpriteLibrary;
-import input.Input;
+import input.KeyHandler;
 import map.GameMap;
 
 import java.util.ArrayList;
@@ -14,29 +17,22 @@ public abstract class State {
     protected GameMap gameMap;
     protected List<GameObject> gameObjects;
     protected SpriteLibrary spriteLibrary;
-    protected Input input;
+    protected KeyHandler keyHandler;
+    protected Player player;
     protected FarmBoard farmBoard;
 
-    public State(Input input) {
-        this.input = input;
+    public State(KeyHandler keyHandler, GamePanel gamePanel) {
+        this.keyHandler = keyHandler;
         gameObjects = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
-        farmBoard = new FarmBoard();
+        player = new Player(new PlayerController(keyHandler), spriteLibrary);
     }
 
     //update every action in the game
     public void update() {
         gameObjects.forEach(gameObject -> gameObject.update());
-        handleMouseInput();
         //update farmboard to player
 
-    }
-
-    private void handleMouseInput() {
-        if (getInput().isMouseClicked()) {
-            System.out.println("clicked");
-        }
-        input.clearMouseClick();
     }
 
     public List<GameObject> getGameObjects() {
@@ -47,8 +43,11 @@ public abstract class State {
         return gameMap;
     }
 
-    public Input getInput() {
-        return input;
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
+    }
+    public Player getPlayer() {
+        return player;
     }
 
     public FarmBoard getFarmBoard() {

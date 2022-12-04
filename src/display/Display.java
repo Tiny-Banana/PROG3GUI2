@@ -9,7 +9,6 @@ public class Display extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
-        //add(farmBoard);
         add(gamePanel);
 
         pack();

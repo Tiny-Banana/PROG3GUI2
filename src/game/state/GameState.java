@@ -1,8 +1,8 @@
 package game.state;
 
-import controller.PlayerController;
-import entity.Player;
-import input.Input;
+import farm.FarmBoard;
+import game.GamePanel;
+import input.KeyHandler;
 import map.GameMap;
 
 //real time update of the game
@@ -11,12 +11,11 @@ public class GameState extends State {
     //defeat conditions
     private boolean playing;
 
-    public GameState(Input input) {
-        super(input);
+    public GameState(KeyHandler keyHandler, GamePanel gamePanel) {
+        super(keyHandler, gamePanel);
         playing = true;
-        Player player = new Player(new PlayerController(input), spriteLibrary);
-        gameObjects.add(player);
         gameMap = new GameMap(spriteLibrary);
+        farmBoard = new FarmBoard(this, gamePanel);
         initializeFarmBoard();
     }
 
