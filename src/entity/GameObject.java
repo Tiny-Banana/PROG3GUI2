@@ -24,4 +24,12 @@ public abstract class GameObject {
     public Size getSize() {
         return size;
     }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
 }
