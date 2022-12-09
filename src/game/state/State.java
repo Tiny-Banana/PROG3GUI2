@@ -4,7 +4,6 @@ import controller.PlayerController;
 import entity.GameObject;
 import entity.Player;
 import farm.FarmBoard;
-import game.GamePanel;
 import gfx.SpriteLibrary;
 import input.KeyHandler;
 import map.GameMap;
@@ -21,11 +20,11 @@ public abstract class State {
     protected Player player;
     protected FarmBoard farmBoard;
 
-    public State(KeyHandler keyHandler, GamePanel gamePanel) {
+    public State(KeyHandler keyHandler) {
         this.keyHandler = keyHandler;
-        gameObjects = new ArrayList<>();
-        spriteLibrary = new SpriteLibrary();
-        player = new Player(new PlayerController(keyHandler), spriteLibrary);
+        this.gameObjects = new ArrayList<>();
+        this.spriteLibrary = new SpriteLibrary();
+        this.player = new Player(new PlayerController(keyHandler), spriteLibrary);
     }
 
     //update every action in the game

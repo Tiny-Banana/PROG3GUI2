@@ -1,9 +1,11 @@
 package entity;
 
 import core.Position;
+import entity.crops.FarmCrop;
 import game.GamePanel;
 import game.state.State;
 import input.ActionHandler;
+import input.MenuHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,14 +14,15 @@ import java.awt.event.MouseListener;
 
 public class FarmTile extends GameObject {
 
-    Player player;
+    private Player player;
     private Image sprite;
     private FarmCrop plantedFarmCrop;
     private boolean isPlowed;
     private boolean rock;
     private JLabel objectLabel;
     private JPopupMenu popupMenu;
-    private JMenu[] menu;
+    private JMenuItem[] menu;
+    private State state;
     //crop
 
     //player, and controller
@@ -35,6 +38,8 @@ public class FarmTile extends GameObject {
         this.objectLabel = new JLabel();
         this.objectLabel.setBounds(x, y, GamePanel.TILE_SIZE, GamePanel.TILE_SIZE);
 
+        this.state = state;
+        displayPopUp();
         state.getGameObjects().add(this);
 
 //        plantedFarmCrop = new FarmCrop(state);
@@ -46,23 +51,30 @@ public class FarmTile extends GameObject {
     }
 
     private void addMenuItems() {
-        menu[0] = new JMenu("Plow");
-        menu[0].addActionListener(new ActionHandler());
+        menu = new JMenuItem[4];
+        menu[0] = new JMenuItem("Plow");
+        menu[0].addActionListener(new ActionHandler(player, this, state));
         menu[0].setActionCommand("plow");
 
-        menu[1] = new JMenu("Plant");
+        menu[1] = new JMenuItem("Plant");
+        menu[1].addActionListener(new ActionHandler(player, this, state));
+        menu[1].setActionCommand("plant");
 
-
-        menu[2] = new JMenu("Water");
-        menu[2].addActionListener(new ActionHandler());
+        menu[2] = new JMenuItem("Water");
+        menu[2].addActionListener(new ActionHandler(player, this, state));
         menu[2].setActionCommand("water");
+
+        JMenu menus = new JMenu("Plant");
+        menus.addMenuListener(new MenuHandler(menus, this, player, state));
 
         popupMenu.add(menu[0]);
         popupMenu.add(menu[1]);
         popupMenu.add(menu[2]);
+
+
+        popupMenu.add(menus);
+
     }
-
-
     private void displayPopUp() {
         this.popupMenu = new JPopupMenu();
         this.menu = new JMenu[3];
@@ -77,7 +89,6 @@ public class FarmTile extends GameObject {
                     popupMenu.show(objectLabel, e.getX(), e.getY());
                 }
             }
-
             @Override
             public void mouseReleased(MouseEvent e) {}
 
@@ -106,5 +117,30 @@ public class FarmTile extends GameObject {
     public void setRock(boolean rock) {
         this.rock = rock;
     }
+
+    public FarmCrop getPlantedFarmCrop() {
+        return plantedFarmCrop;
+    }
+
+    public void setPlantedFarmCrop(FarmCrop plantedFarmCrop) {
+        this.plantedFarmCrop = plantedFarmCrop;
+    }
+
+    public boolean isPlowed() {
+        return isPlowed;
+    }
+
+    public void setPlowed(boolean plowed) {
+        isPlowed = plowed;
+    }
+
+    public boolean isRock() {
+        return rock;
+    }
+
+    public void setIsRock(boolean isRock) {
+        this.rock = isRock;
+    }
+
 
 }

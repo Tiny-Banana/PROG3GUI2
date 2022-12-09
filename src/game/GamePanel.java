@@ -39,8 +39,6 @@ public class GamePanel extends JPanel implements Runnable {
         renderer = new Renderer();
         state = new GameState(keyHandler, this);
 
-//        new FarmBoard(state, this);
-
         state.getGameObjects().add(state.getPlayer());
 
         new Display(this);

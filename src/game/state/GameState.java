@@ -12,7 +12,7 @@ public class GameState extends State {
     private boolean playing;
 
     public GameState(KeyHandler keyHandler, GamePanel gamePanel) {
-        super(keyHandler, gamePanel);
+        super(keyHandler);
         playing = true;
         gameMap = new GameMap(spriteLibrary);
         farmBoard = new FarmBoard(this, gamePanel);
