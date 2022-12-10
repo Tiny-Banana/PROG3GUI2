@@ -1,7 +1,6 @@
 package entity;
 
 import core.Position;
-import entity.crops.Carrot;
 import entity.crops.FarmCrop;
 import game.GamePanel;
 import game.state.State;
@@ -50,13 +49,13 @@ public class FarmTile extends GameObject {
 
     private void addMenuItems() {
         menu = new JMenuItem[4];
-        menu[0] = new JMenuItem("Plow");
+        menu[0] = new JMenuItem("View");
         menu[0].addActionListener(new ActionHandler(player, this, state));
-        menu[0].setActionCommand("plow");
+        menu[0].setActionCommand("view");
 
-//        menu[1] = new JMenuItem("Plant");
-//        menu[1].addActionListener(new ActionHandler(player, this, state));
-//        menu[1].setActionCommand("plant");
+        menu[1] = new JMenuItem("Plow");
+        menu[1].addActionListener(new ActionHandler(player, this, state));
+        menu[1].setActionCommand("plow");
 
         menu[2] = new JMenuItem("Water");
         menu[2].addActionListener(new ActionHandler(player, this, state));
@@ -66,7 +65,7 @@ public class FarmTile extends GameObject {
         menus.addMenuListener(new MenuHandler(menus, this, player, state));
 
         popupMenu.add(menu[0]);
-//        popupMenu.add(menu[1]);
+        popupMenu.add(menu[1]);
         popupMenu.add(menu[2]);
 
         popupMenu.add(menus);
@@ -138,6 +137,4 @@ public class FarmTile extends GameObject {
     public void setIsRock(boolean isRock) {
         this.rock = isRock;
     }
-
-
 }

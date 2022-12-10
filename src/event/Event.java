@@ -5,11 +5,15 @@ import entity.Player;
 import entity.crops.*;
 import game.state.State;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Event {
 
     private Player player;
     private FarmTile farmTile;
     private State state;
+
     public Event(Player player, FarmTile farmTile, State state) {
         this.player = player;
         this.farmTile = farmTile;
@@ -56,7 +60,6 @@ public class Event {
     }
     public void harvest() {
 //        String name = farmTile.getPlantedFarmCrop().getName();
-
         player.setExperience(player.getExperience() + farmTile.getPlantedFarmCrop().getExperienceGain());
         //Produce product/s
         int productProduced = (int) (Math.random() * (farmTile.getPlantedFarmCrop().getMaxProduce()) + 1);
@@ -87,6 +90,18 @@ public class Event {
             player.setExperience(player.getExperience() + 4);
             System.out.println("Fertilizing implemented.");
         }
+    }
+    public void view() {
+        JLabel label = new JLabel();
+
+        label.setText("Crop: " + farmTile.getPlantedFarmCrop().getName() + "Crop Type: " +
+                farmTile.getPlantedFarmCrop().getName() + "Water: " + farmTile.getPlantedFarmCrop().getWater() +
+                "Fertilizer: " + farmTile.getPlantedFarmCrop().getFertilizer() + "Water Needed: " +
+                farmTile.getPlantedFarmCrop().getWaterNeeded() + "Fertilizer Needed: " +
+                farmTile.getPlantedFarmCrop().getFertilizerNeeded() + "Withered: " +
+                farmTile.getPlantedFarmCrop().getIsWithered());
+        label.setBackground(Color.WHITE);
+        state.getGamePanel().add(label);
     }
 
     public void plant(String cropName) {

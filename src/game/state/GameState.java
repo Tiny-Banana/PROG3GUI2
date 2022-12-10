@@ -1,7 +1,6 @@
 package game.state;
 
 import controller.Controller;
-import core.Size;
 import farm.FarmBoard;
 import game.GamePanel;
 import input.KeyHandler;
@@ -15,12 +14,10 @@ public class GameState extends State {
 
     public GameState(KeyHandler keyHandler, Controller controller, GamePanel gamePanel) {
         super(keyHandler, controller);
-        playing = true;
-        gameMap = new GameMap(spriteLibrary);
-        farmBoard = new FarmBoard(this, gamePanel);
+        this.playing = true;
+        this.gameMap = new GameMap(spriteLibrary);
+        this.farmBoard = new FarmBoard(this, gamePanel);
+        this.gamePanel = gamePanel;
     }
-
-
-
     //playing conditions dito ilalagay
 }

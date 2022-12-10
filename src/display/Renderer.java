@@ -1,6 +1,7 @@
 package display;
 
 import controller.Controller;
+import event.Event;
 import game.GamePanel;
 import game.state.State;
 
@@ -8,14 +9,11 @@ import java.awt.*;
 
 public class Renderer {
 
-    public void render(State state, Graphics2D graphics, Controller controller, UI ui) {
+    public void render(State state, Graphics2D graphics, Controller controller, UIPlayer uiPlayer) {
         renderMap(state, graphics);
         renderObject(state, graphics);
-        if (controller.isRequestingStatus())
-            ui.draw(graphics);
-
+        if (controller.isRequestingStatus()) uiPlayer.draw(graphics);
     }
-
     private void renderObject(State state, Graphics2D graphics) {
         for (int i = 0; i < state.getGameObjects().size(); i++) {
             if (state.getGameObjects().get(i).getObjectName().equals("player")){

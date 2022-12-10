@@ -32,6 +32,8 @@ public class ActionHandler implements ActionListener {
             event.fertilize();
         } else if (choice.equals("harvest")) {
             event.harvest();
+        } else if (choice.equals("view")) {
+            event.view();
         }
     }
 }

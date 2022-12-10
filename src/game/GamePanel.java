@@ -4,7 +4,8 @@ import controller.Controller;
 import controller.PlayerController;
 import display.Display;
 import display.Renderer;
-import display.UI;
+import display.UIPlayer;
+import event.Event;
 import game.state.GameState;
 import game.state.State;
 import input.KeyHandler;
@@ -13,7 +14,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
-
     public static final int SCALE = 3;
     public static final int TILE_SIZE = 48; //48 x 48
     public static final int MAX_SCREEN_COL = 17;
@@ -21,7 +21,9 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int SCREEN_WIDTH = MAX_SCREEN_COL * TILE_SIZE;
     public static final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
     private final Renderer renderer;
-    private UI ui;
+    private UIPlayer uiPlayer;
+    private Event event;
+
 
     private KeyHandler keyHandler;
     private Controller controller;
@@ -42,7 +44,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         renderer = new Renderer();
         state = new GameState(keyHandler, controller, this);
-        ui = new UI(state.getPlayer());
+        uiPlayer = new UIPlayer(state.getPlayer());
+
         state.getGameObjects().add(state.getPlayer());
         new Display(this);
     }
@@ -83,9 +86,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        renderer.render(state, g2, controller, ui);
+        renderer.render(state, g2, controller, uiPlayer);
 
         g2.dispose();
-
     }
 }
