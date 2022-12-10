@@ -59,7 +59,7 @@ public class MenuHandler implements MenuListener {
 
     @Override
     public void menuDeselected(MenuEvent e) {
-
+        baseMenu.removeAll();
     }
 
     @Override

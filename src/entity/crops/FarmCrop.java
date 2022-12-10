@@ -1,6 +1,7 @@
 package entity.crops;
 
 import core.Position;
+import entity.FarmTile;
 import entity.GameObject;
 import game.state.State;
 
@@ -25,10 +26,10 @@ public abstract class FarmCrop extends GameObject {
     protected int maxProduce;
     protected int basePrice;
     public FarmCrop(String name, String cropType, int harvestTime, int seedCost, double experienceGain, int water,
-                int waterNeeded, int waterLimit, int fertilizer, int fertilizerNeeded, int fertilizerLimit,
-                boolean isWithered, int daysPlanted, int maxProduce, int basePrice, State state) {
+                    int waterNeeded, int waterLimit, int fertilizer, int fertilizerNeeded, int fertilizerLimit,
+                    boolean isWithered, int daysPlanted, int maxProduce, int basePrice, State state, FarmTile farmTile) {
         this.sprite = state.getGameMap().getTileImage()[3].getSprite();
-        setPosition(new Position(100, 100));
+        setPosition(farmTile.getPosition());
         this.name = name;
         this.cropType = cropType;
         this.harvestTime = harvestTime;

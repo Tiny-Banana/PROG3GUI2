@@ -92,12 +92,12 @@ public class Event {
         //tile
         FarmCrop plantedCrop = farmTile.getPlantedFarmCrop();
         FarmCrop seed = switch (cropName) {
-            case "carrot" -> new Carrot(state);
-            case "potato" -> new Potato(state);
-            case "rose" -> new Rose(state);
-            case "sunflower" -> new Sunflower(state);
-            case "tulips" -> new Tulips(state);
-            case "turnip" -> new Turnip(state);
+            case "carrot" -> new Carrot(state, farmTile);
+            case "potato" -> new Potato(state, farmTile);
+            case "rose" -> new Rose(state, farmTile);
+            case "sunflower" -> new Sunflower(state, farmTile);
+            case "tulips" -> new Tulips(state, farmTile);
+            case "turnip" -> new Turnip(state, farmTile);
             default -> null;
         };
 
@@ -112,9 +112,9 @@ public class Event {
         } else {
             //Deduct the seed cost to player's Objectcoins
             player.setObjectcoins(player.getObjectcoins() - (seed.getSeedCost() - player.getSeedCostReduction()));
-            plantedCrop = seed;
+            farmTile.setPlantedFarmCrop(seed);
 
-            System.out.println("Planting implemented. You planted " + plantedCrop.getName() + ".");
+            System.out.println("Planting implemented. You planted " + seed.getName() + ".");
         }
     }
 }

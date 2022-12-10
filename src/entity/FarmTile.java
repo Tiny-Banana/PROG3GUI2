@@ -1,6 +1,7 @@
 package entity;
 
 import core.Position;
+import entity.crops.Carrot;
 import entity.crops.FarmCrop;
 import game.GamePanel;
 import game.state.State;
@@ -42,7 +43,7 @@ public class FarmTile extends GameObject {
         displayPopUp();
         state.getGameObjects().add(this);
 
-//        plantedFarmCrop = new FarmCrop(state);
+//        plantedFarmCrop = new Carrot(state);
 //        state.getGameObjects().add(plantedFarmCrop);
     }
 
