@@ -1,6 +1,8 @@
 package game.state;
 
+import controller.Controller;
 import controller.PlayerController;
+import display.UI;
 import entity.GameObject;
 import entity.Player;
 import farm.FarmBoard;
@@ -19,12 +21,11 @@ public abstract class State {
     protected KeyHandler keyHandler;
     protected Player player;
     protected FarmBoard farmBoard;
-
-    public State(KeyHandler keyHandler) {
+    public State(KeyHandler keyHandler, Controller controller) {
         this.keyHandler = keyHandler;
         this.gameObjects = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
-        this.player = new Player(new PlayerController(keyHandler), spriteLibrary);
+        this.player = new Player(controller, spriteLibrary);
     }
 
     //update every action in the game

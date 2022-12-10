@@ -1,5 +1,6 @@
 package display;
 
+import controller.Controller;
 import game.GamePanel;
 import game.state.State;
 
@@ -7,9 +8,12 @@ import java.awt.*;
 
 public class Renderer {
 
-    public void render(State state, Graphics2D graphics) {
+    public void render(State state, Graphics2D graphics, Controller controller, UI ui) {
         renderMap(state, graphics);
         renderObject(state, graphics);
+        if (controller.isRequestingStatus())
+            ui.draw(graphics);
+
     }
 
     private void renderObject(State state, Graphics2D graphics) {

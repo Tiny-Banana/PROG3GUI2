@@ -1,7 +1,10 @@
 package game;
 
+import controller.Controller;
+import controller.PlayerController;
 import display.Display;
 import display.Renderer;
+import display.UI;
 import game.state.GameState;
 import game.state.State;
 import input.KeyHandler;
@@ -18,8 +21,10 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int SCREEN_WIDTH = MAX_SCREEN_COL * TILE_SIZE;
     public static final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
     private final Renderer renderer;
+    private UI ui;
 
     private KeyHandler keyHandler;
+    private Controller controller;
     private State state;
 
     private boolean running;
@@ -27,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         keyHandler = new KeyHandler();
+        controller = new PlayerController(keyHandler);
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         setBackground(Color.black);
         setDoubleBuffered(true);
@@ -35,8 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
         setLayout(null);
 
         renderer = new Renderer();
-        state = new GameState(keyHandler, this);
-
+        state = new GameState(keyHandler, controller, this);
+        ui = new UI(state.getPlayer());
         state.getGameObjects().add(state.getPlayer());
         new Display(this);
     }
@@ -77,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        renderer.render(state, g2);
+        renderer.render(state, g2, controller, ui);
 
         g2.dispose();
 

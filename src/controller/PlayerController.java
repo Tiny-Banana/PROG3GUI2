@@ -30,4 +30,9 @@ public class PlayerController implements Controller {
     public boolean isRequestingRight() {
         return keyHandler.isPressed(KeyEvent.VK_D);
     }
+
+    @Override
+    public boolean isRequestingStatus() {
+        return keyHandler.isPressed(KeyEvent.VK_U);
+    }
 }
