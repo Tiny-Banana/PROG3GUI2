@@ -53,10 +53,9 @@ public class Event {
             //remove rock drawing
             System.out.println("Pickaxing implemented.");
         }
-
     }
     public void harvest() {
-        String name = farmTile.getPlantedFarmCrop().getName();
+//        String name = farmTile.getPlantedFarmCrop().getName();
 
         player.setExperience(player.getExperience() + farmTile.getPlantedFarmCrop().getExperienceGain());
         //Produce product/s
@@ -71,10 +70,12 @@ public class Event {
         //Resetting tile's status
 
         //remove crop drawing
+        state.getGameObjects().remove(farmTile.getPlantedFarmCrop());
+        farmTile.setPlantedFarmCrop(null);
         farmTile.setPlantedFarmCrop(null);
         farmTile.setPlowed(false);
 
-        System.out.println("Harvesting implemented. You harvested " + productProduced + " " + name + "/s" + ", and earned " + sellingPrice + " Objectcoins by automatic selling of products.");
+//        System.out.println("Harvesting implemented. You harvested " + productProduced + " " + name + "/s" + ", and earned " + sellingPrice + " Objectcoins by automatic selling of products.");
 
     }
     public void fertilize() {
@@ -114,7 +115,7 @@ public class Event {
             player.setObjectcoins(player.getObjectcoins() - (seed.getSeedCost() - player.getSeedCostReduction()));
             farmTile.setPlantedFarmCrop(seed);
 
-            System.out.println("Planting implemented. You planted " + seed.getName() + ".");
+            state.getGameObjects().add(seed);
         }
     }
 }

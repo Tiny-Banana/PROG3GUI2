@@ -41,7 +41,7 @@ public class Player extends MovingEntity {
     public void updateFarmerType(int type) {
         if (type == 1 && Objectcoins >= 200 && farmerTypeInt == 1 && level >= 5) {
             Objectcoins -= 200;
-            farmerType = "Registered Farmer";
+            farmerType = "Registered";
             bonusEarning = 1;
             seedCostReduction = 1;
             farmerTypeInt = 2;
@@ -49,7 +49,7 @@ public class Player extends MovingEntity {
         } else if (type == 2 && Objectcoins >= 300 && farmerTypeInt <= 2 && level >= 10) {
             Objectcoins -= 300;
             bonusEarning = 2;
-            farmerType = "Distinguished Farmer";
+            farmerType = "Distinguished";
             seedCostReduction = 2;
             waterBonusLimit = 1;
             farmerTypeInt = 3;
@@ -57,7 +57,7 @@ public class Player extends MovingEntity {
         } else if (type == 3 && Objectcoins >= 400 && farmerTypeInt <= 3 && level >= 15) {
             Objectcoins -= 400;
             bonusEarning = 4;
-            farmerType = "Legendary Farmer";
+            farmerType = "Legendary";
             seedCostReduction = 3;
             waterBonusLimit = 2;
             fertilizerBonusLimit = 1;
@@ -127,5 +127,9 @@ public class Player extends MovingEntity {
 
     public int getFarmerTypeInt() {
         return farmerTypeInt;
+    }
+
+    public String getFarmerType() {
+        return farmerType;
     }
 }

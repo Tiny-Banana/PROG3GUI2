@@ -31,13 +31,10 @@ public abstract class State {
     public void update() {
         gameObjects.forEach(gameObject -> gameObject.update());
         //update farmboard to player
-
     }
-
     public List<GameObject> getGameObjects() {
         return gameObjects;
     }
-
     public GameMap getGameMap() {
         return gameMap;
     }

@@ -14,13 +14,13 @@ public class Renderer {
 
     private void renderObject(State state, Graphics2D graphics) {
         for (int i = 0; i < state.getGameObjects().size(); i++) {
-            if (state.getGameObjects().get(i).getObjectName().equals("tile")) {
+            if (state.getGameObjects().get(i).getObjectName().equals("player")){
                 graphics.drawImage(
                         state.getGameObjects().get(i).getSprite(),
                         state.getGameObjects().get(i).getPosition().intX(),
                         state.getGameObjects().get(i).getPosition().intY(),
-                        GamePanel.TILE_SIZE,
-                        GamePanel.TILE_SIZE,
+                        GamePanel.TILE_SIZE * 3,
+                        GamePanel.TILE_SIZE * 3,
                         null
                 );
             } else {
@@ -28,8 +28,8 @@ public class Renderer {
                         state.getGameObjects().get(i).getSprite(),
                         state.getGameObjects().get(i).getPosition().intX(),
                         state.getGameObjects().get(i).getPosition().intY(),
-                        GamePanel.TILE_SIZE * 3,
-                        GamePanel.TILE_SIZE * 3,
+                        GamePanel.TILE_SIZE,
+                        GamePanel.TILE_SIZE,
                         null
                 );
             }

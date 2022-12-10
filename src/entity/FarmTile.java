@@ -42,9 +42,6 @@ public class FarmTile extends GameObject {
         this.state = state;
         displayPopUp();
         state.getGameObjects().add(this);
-
-//        plantedFarmCrop = new Carrot(state);
-//        state.getGameObjects().add(plantedFarmCrop);
     }
 
     public JLabel getObjectLabel() {
@@ -57,9 +54,9 @@ public class FarmTile extends GameObject {
         menu[0].addActionListener(new ActionHandler(player, this, state));
         menu[0].setActionCommand("plow");
 
-        menu[1] = new JMenuItem("Plant");
-        menu[1].addActionListener(new ActionHandler(player, this, state));
-        menu[1].setActionCommand("plant");
+//        menu[1] = new JMenuItem("Plant");
+//        menu[1].addActionListener(new ActionHandler(player, this, state));
+//        menu[1].setActionCommand("plant");
 
         menu[2] = new JMenuItem("Water");
         menu[2].addActionListener(new ActionHandler(player, this, state));
@@ -69,9 +66,8 @@ public class FarmTile extends GameObject {
         menus.addMenuListener(new MenuHandler(menus, this, player, state));
 
         popupMenu.add(menu[0]);
-        popupMenu.add(menu[1]);
+//        popupMenu.add(menu[1]);
         popupMenu.add(menu[2]);
-
 
         popupMenu.add(menus);
 

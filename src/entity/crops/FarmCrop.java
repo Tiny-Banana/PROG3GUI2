@@ -1,6 +1,5 @@
 package entity.crops;
 
-import core.Position;
 import entity.FarmTile;
 import entity.GameObject;
 import game.state.State;
@@ -9,8 +8,7 @@ import java.awt.*;
 
 public abstract class FarmCrop extends GameObject {
 
-    private Image sprite;
-    protected String name;
+    protected Image sprite;
     protected String cropType;
     protected int harvestTime;
     protected int seedCost;
@@ -30,7 +28,8 @@ public abstract class FarmCrop extends GameObject {
                     boolean isWithered, int daysPlanted, int maxProduce, int basePrice, State state, FarmTile farmTile) {
         this.sprite = state.getGameMap().getTileImage()[3].getSprite();
         setPosition(farmTile.getPosition());
-        this.name = name;
+        //
+        this.objectName = "plant";
         this.cropType = cropType;
         this.harvestTime = harvestTime;
         this.seedCost = seedCost;
@@ -57,10 +56,6 @@ public abstract class FarmCrop extends GameObject {
     }
 
     //Getters and Setters
-    public String getName() {
-        return name;
-    }
-
     public String getCropType() {
         return cropType;
     }

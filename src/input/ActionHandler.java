@@ -22,6 +22,16 @@ public class ActionHandler implements ActionListener {
         } else if (choice.equals("turnip") || choice.equals("carrot") || choice.equals("rose")
                 || choice.equals("potato") || choice.equals("tulips")) {
             event.plant(choice);
+        } else if (choice.equals("water")) {
+            event.water();
+        } else if (choice.equals("shovel")) {
+            event.shovel();
+        } else if (choice.equals("pickaxe")) {
+            event.pickaxe();
+        } else if (choice.equals("fertilize")) {
+            event.fertilize();
+        } else if (choice.equals("harvest")) {
+            event.harvest();
         }
     }
 }

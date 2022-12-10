@@ -2,8 +2,6 @@ package game;
 
 import display.Display;
 import display.Renderer;
-import entity.FarmTile;
-import farm.FarmBoard;
 import game.state.GameState;
 import game.state.State;
 import input.KeyHandler;
@@ -40,7 +38,6 @@ public class GamePanel extends JPanel implements Runnable {
         state = new GameState(keyHandler, this);
 
         state.getGameObjects().add(state.getPlayer());
-
         new Display(this);
     }
 
